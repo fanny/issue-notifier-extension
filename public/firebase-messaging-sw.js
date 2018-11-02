@@ -12,24 +12,27 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(function (payload) {
-    const notificationTitle = payload.notification.data.title;
+messaging.setBackgroundMessageHandler((payload) => {
+    const { notification: { data } }  = payload;
+    const { title, body, icon } = data; 
+    const notificationTitle = title;
     const notificationOptions = {
-      body: payload.notification.data.body,
-      icon: payload.notification.data.icon
+      body: body,
+      icon: icon
     };
+
     return self.registration.showNotification(notificationTitle,
       notificationOptions);
 });
 
-self.addEventListener("push", event => {
-    const data = event.data.json()
-    const title = data.notification.title;
-    console.log(title);
-    const body = {
-        body: data.notification.body,
-        icon: data.notification.icon
+self.addEventListener('push', event => {
+    const notification  = event.data.json().notification;
+    const { title, body, icon } = notification;
+    const options = {
+        body: body,
+        icon: icon
     }
-    event.waitUntil(self.registration.showNotification(title, body))
+
+    event.waitUntil(self.registration.showNotification(title, options));
 });
   

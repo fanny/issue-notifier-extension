@@ -2,12 +2,12 @@ import firebase from 'firebase';
 
 export const initializeFirebase = () => {
     firebase.initializeApp({
-        apiKey: "AIzaSyA5j-DLK2oLZQBJNTt02WZl-y8WE62E-cI",
-        authDomain: "teste-69df9.firebaseapp.com",
-        databaseURL: "https://teste-69df9.firebaseio.com",
-        projectId: "teste-69df9",
-        storageBucket: "teste-69df9.appspot.com",
-        messagingSenderId: "502490522309"
+        apiKey: 'AIzaSyA5j-DLK2oLZQBJNTt02WZl-y8WE62E-cI',
+        authDomain: 'teste-69df9.firebaseapp.com',
+        databaseURL: 'https://teste-69df9.firebaseio.com',
+        projectId: 'teste-69df9',
+        storageBucket: 'teste-69df9.appspot.com',
+        messagingSenderId: '502490522309'
     });
 
     navigator.serviceWorker
@@ -23,7 +23,6 @@ export const askForPermissionToReceiveNotifications = async () => {
         const messaging = firebase.messaging();
         await messaging.requestPermission();
         const token = await messaging.getToken();
-        console.log('oii', token);
         console.log(`token do usuario: ${token}`);
 
         return token;
