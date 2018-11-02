@@ -13,12 +13,23 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
-    const notificationTitle = payload.data.title;
+    const notificationTitle = payload.notification.data.title;
     const notificationOptions = {
-      body: payload.data.body,
-      icon: payload.data.icon
+      body: payload.notification.data.body,
+      icon: payload.notification.data.icon
     };
     return self.registration.showNotification(notificationTitle,
       notificationOptions);
+});
+
+self.addEventListener("push", event => {
+    const data = event.data.json()
+    const title = data.notification.title;
+    console.log(title);
+    const body = {
+        body: data.notification.body,
+        icon: data.notification.icon
+    }
+    event.waitUntil(self.registration.showNotification(title, body))
 });
   
