@@ -1,20 +1,17 @@
 import firebase from 'firebase';
-import firebaseOptions from '../config/firebase';
+import firebaseOptions from '../config/firebaseOptions';
 
-export const initializeFirebase = () => {
-    console.log(firebaseOptions);
-    
+const initializeFirebase = () => {    
     firebase.initializeApp(firebaseOptions);
 
     navigator.serviceWorker
         .register('../firebase-messaging-sw.js')
         .then((registration) => {
             firebase.messaging().useServiceWorker(registration);
-            console.log('registrando');
         });
 }
 
-export const askForPermissionToReceiveNotifications = async () => {
+const askForPermissionToReceiveNotifications = async () => {
     try{
         const messaging = firebase.messaging();
         await messaging.requestPermission();
@@ -25,4 +22,9 @@ export const askForPermissionToReceiveNotifications = async () => {
     }catch(error){
         console.log(error);
     }
+}
+
+export {
+    initializeFirebase,
+    askForPermissionToReceiveNotifications
 }

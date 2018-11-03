@@ -1,5 +1,5 @@
 import React from 'react';
-import { askForPermissionToReceiveNotifications} from '../service/push-notifications';
+import { askForPermissionToReceiveNotifications} from '../service/pushNotifications';
 
 const NotificationButton = () => (
     <button onClick={askForPermissionToReceiveNotifications}>
