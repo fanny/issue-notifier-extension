@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv/config');
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -8,7 +10,7 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _firebaseOptions = require('./../src/config/firebaseOptions');
+var _firebaseOptions = require('./config/firebaseOptions');
 
 var _firebaseOptions2 = _interopRequireDefault(_firebaseOptions);
 

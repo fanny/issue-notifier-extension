@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 require('dotenv/config');
 
-const firebaseOptions = {
+var firebaseOptions = {
     firebaseUrl: process.env.FIREBASE_URL,
     serverKey: process.env.SERVER_KEY
 };
