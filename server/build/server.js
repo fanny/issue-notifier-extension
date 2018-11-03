@@ -13,8 +13,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 var port = process.env.PORT || 5000;
 var firebaseurl = 'https://fcm.googleapis.com/fcm/send';
+var userToken = null;
 
 app.use(_express2.default.json());
+
+app.post('/register', function (req, res) {
+    console.log(req.body);
+    userToken = req.body.userToken;
+    res.sendStatus(201);
+});
 
 app.post('/watch', function (req, res) {
     var body = req.body;
@@ -37,12 +44,12 @@ app.post('/watch', function (req, res) {
                 'body': login + ' ' + action + ' in issue #' + title,
                 'click_action': 'html_url'
             },
-            'to': 'f2C0sc9UpgU:APA91bHzR4GvftHawcUY1aMtfw4WbgJmDk0TKZUx12MRC702SVRggqxbankIyA-ViBR5BLjex5G6avMYIY31gpPZ-8duiQy_KG4l7Mr_JZRkQ3B1yR667viu8bpCdXEFK2wenNR-H_48'
+            'to': '' + userToken
         }
     }).then(function (response) {
         console.log(response);
     }).catch(function (error) {
-        console.log(response);
+        console.log(error);
     });
 });
 
