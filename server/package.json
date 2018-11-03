@@ -2,10 +2,10 @@
   "name": "issue-notifier-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel server.js --out-dir build"
+    "build": "babel src/*.js src/config/*.js -d dist"
   },
   "author": "fannyvieira",
   "license": "ISC",

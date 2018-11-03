@@ -8,11 +8,18 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _firebaseOptions = require('./../src/config/firebaseOptions');
+
+var _firebaseOptions2 = _interopRequireDefault(_firebaseOptions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
 var port = process.env.PORT || 5000;
-var firebaseurl = 'https://fcm.googleapis.com/fcm/send';
+var firebaseUrl = _firebaseOptions2.default.firebaseUrl,
+    serverKey = _firebaseOptions2.default.serverKey;
+
+
 var userToken = null;
 
 app.use(_express2.default.json());
@@ -24,12 +31,13 @@ app.use(function (req, res, next) {
 });
 
 app.post('/register', function (req, res) {
-    console.log(req.body);
     userToken = req.body.userToken;
     res.sendStatus(201);
 });
 
 app.post('/watch', function (req, res) {
+    console.log(req.body);
+
     var body = req.body;
     var action = body.action,
         title = body.issue.title,
@@ -38,17 +46,17 @@ app.post('/watch', function (req, res) {
 
 
     (0, _axios2.default)({
-        url: firebaseurl,
+        url: firebaseUrl,
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'key=AAAAdP7E4sU:APA91bEYRdiqUtOq0ukF0WdTbeInl71bOtkJC_g_zP8WLeQDRngBGf6m1eJdEG2wIvVWXuiaLGZvLkhqk9-D3LUltG_OdZU6wVayy76d_CGweuLuk1cNwNpNWGFuv4byERGy2Lr5q51U'
+            'Authorization': 'key=' + serverKey
         },
         data: {
             'notification': {
                 'title': 'issue-notifier',
                 'body': login + ' ' + action + ' in issue #' + title,
-                'click_action': 'html_url'
+                'click_action': '' + html_url
             },
             'to': '' + userToken
         }
