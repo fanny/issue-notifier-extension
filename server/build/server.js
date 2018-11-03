@@ -17,6 +17,12 @@ var userToken = null;
 
 app.use(_express2.default.json());
 
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 app.post('/register', function (req, res) {
     console.log(req.body);
     userToken = req.body.userToken;
