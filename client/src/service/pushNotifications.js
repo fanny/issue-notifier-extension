@@ -21,7 +21,6 @@ const askForPermissionToReceiveNotifications = async () => {
         axios({
             url: 'http://localhost:5000/register',
             method: 'post',
-            headers: { 'crossDomain': true },
             data: { userToken: token }
         }).then((response) => {
             console.log(response);
