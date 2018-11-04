@@ -1,3 +1,5 @@
+/* global chrome*/
+
 import React, { Component } from 'react';
 import logo from './assets/logo.svg';
 import NotificationButton from './NotificationButton';
@@ -10,7 +12,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Welcome to the push-notification demo!
+            Issue notifier
           </p>
           <NotificationButton />
         </header>
