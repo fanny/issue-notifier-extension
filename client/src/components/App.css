@@ -3,7 +3,6 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 5s linear;
   height: 80px;
 }
 
@@ -36,7 +35,6 @@ button {
   cursor: pointer;
   background-color: #222;
   color: #fff;
-  transition: .3s ease-in-out;
 }
 
 button:hover {
