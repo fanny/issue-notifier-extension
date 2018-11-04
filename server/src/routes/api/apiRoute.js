@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, watch} from './controller';
+import { register, watch } from './controller';
 
 const apiRoute = express.Router();
 
