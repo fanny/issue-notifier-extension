@@ -4,12 +4,18 @@ import axios from 'axios';
 
 const initializeFirebase = () => {    
     firebase.initializeApp(firebaseOptions);
+    if ('serviceWorker' in navigator) {
+        console.log('init');
+        navigator.serviceWorker
+            .register('./firebase-messaging-sw.js')
+            .then((registration) => {
+                console.log('not today');
+                firebase.messaging().useServiceWorker(registration);
+            }).catch((error) => {
+                console.log(error);
+            });
 
-    navigator.serviceWorker
-        .register('../firebase-messaging-sw.js')
-        .then((registration) => {
-            firebase.messaging().useServiceWorker(registration);
-        });
+    }
 }
 
 const askForPermissionToReceiveNotifications = async () => {
