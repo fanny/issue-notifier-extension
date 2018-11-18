@@ -8,7 +8,7 @@ I was tired of needing of checking my emails to know when someone commented or u
 
 - Second, register to get push notifications
 
-![](https://i.imgur.com/zk4ZGxd.png?1)
+![](https://i.imgur.com/TMffQpK.png)
 
 - And, Comment, update or create in issue and ta-da:
 
